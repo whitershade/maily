@@ -5,6 +5,7 @@ const app = express();
 
 require('./services/passport');
 require('./routes/auth')(app);
+require('./models/User');
 
 const PORT = process.env.PORT || 5000;
 
