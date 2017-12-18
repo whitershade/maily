@@ -1,6 +1,18 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 
-export default class Header extends PureComponent {
+class Header extends PureComponent {
+  renderContent() {
+    switch (this.props.auth) {
+      case null:
+        return '';
+      case false:
+        return 'Login';
+      default:
+        return 'Logout';
+    }
+  }
+
   render() {
     return (
       <nav>
@@ -10,7 +22,7 @@ export default class Header extends PureComponent {
           </a>
           <ul id="nav-mobile" className="right">
             <li>
-              <a href="#">Login with Google</a>
+              <a href="/auth/google">{this.renderContent()}</a>
             </li>
           </ul>
         </div>
@@ -18,3 +30,7 @@ export default class Header extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps)(Header);
