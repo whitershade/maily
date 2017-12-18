@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from '../Header';
+import * as actions from '../../actions';
 
 const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
 const Landing = () => <h2>Landing</h2>;
 const NoPage = () => <h2>404</h2>;
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <div className="container">
-        <Header />
-        <Switch>
-          <Route path="/surveys/new" component={SurveyNew} />
-          <Route path="/surveys" component={Dashboard} />
-          <Route exact path="/" component={Landing} />
-          <Route component={NoPage} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
-};
+class App extends PureComponent {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
 
-export default App;
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="container">
+          <Header />
+          <Switch>
+            <Route path="/surveys/new" component={SurveyNew} />
+            <Route path="/surveys" component={Dashboard} />
+            <Route exact path="/" component={Landing} />
+            <Route component={NoPage} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+
+export default connect(null, actions)(App);
