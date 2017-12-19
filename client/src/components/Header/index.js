@@ -5,11 +5,19 @@ class Header extends PureComponent {
   renderContent() {
     switch (this.props.auth) {
       case null:
-        return '';
+        return;
       case false:
-        return 'Login';
+        return (
+          <li>
+            <a href="/auth/google">Login with Google</a>
+          </li>
+        );
       default:
-        return 'Logout';
+        return (
+          <li>
+            <a href="#">Logout</a>
+          </li>
+        );
     }
   }
 
@@ -21,9 +29,7 @@ class Header extends PureComponent {
             Maily
           </a>
           <ul id="nav-mobile" className="right">
-            <li>
-              <a href="/auth/google">{this.renderContent()}</a>
-            </li>
+            {this.renderContent()}
           </ul>
         </div>
       </nav>
