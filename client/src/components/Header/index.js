@@ -15,7 +15,7 @@ class Header extends PureComponent {
       default:
         return (
           <li>
-            <a href="#">Logout</a>
+            <a href="/api/logout">Logout</a>
           </li>
         );
     }
