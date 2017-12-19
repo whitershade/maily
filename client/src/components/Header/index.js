@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Header extends PureComponent {
   renderContent() {
@@ -25,9 +26,12 @@ class Header extends PureComponent {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a href="/" className="brand-logo">
+          <Link
+            to={this.props.auth ? '/surveys' : '/'}
+            className="left brand-logo"
+          >
             Maily
-          </a>
+          </Link>
           <ul id="nav-mobile" className="right">
             {this.renderContent()}
           </ul>
