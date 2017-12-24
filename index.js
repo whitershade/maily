@@ -26,9 +26,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// should be after all app.use
+// routes should be after all app.use
 require('./routes/auth')(app);
 require('./routes/billing')(app);
+require('./routes/survey')(app);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets (main.js and main.css)
