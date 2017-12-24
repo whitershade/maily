@@ -5,6 +5,12 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
 
+// should be before ./services/passport because passport.js uses models
+require('./models/User');
+require('./models/Survey');
+
+require('./services/passport');
+
 mongoose.connect(keys.mongoURL);
 
 const app = express();
@@ -19,8 +25,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-require('./models/User'); // should be before ./services/passport because passport.js uses models
-require('./services/passport');
 
 // should be after all app.use
 require('./routes/auth')(app);
