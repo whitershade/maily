@@ -48,7 +48,7 @@ class Mailer extends helper.Mail {
     });
 
     const response = await this.sgApi.API(request, (error, response) => {
-      if (error) console.log('Error response received');
+      if (error) console.log(error);
     });
     return response;
   }
